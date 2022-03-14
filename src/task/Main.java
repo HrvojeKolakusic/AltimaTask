@@ -19,7 +19,11 @@ public class Main {
 
 		String line;
 		List<Node> roots = new ArrayList<Node>();
-
+		
+		
+		/*
+		 * this loop reads the input file and builds the family trees
+		 */
 		while ((line = br.readLine()) != null) {
 
 			String[] split = line.split(" ");
@@ -47,16 +51,19 @@ public class Main {
 			
 			parent.children.add(child);
 			
-			
 			roots.remove(child);
 		}
 		
+		//output: print the trees, one by one
 		for (Node root : roots) {
 			print_tree(root, 0);
 		}	
 
 	}
 
+	/*
+	 * function finds a node with the given name if it exists
+	 */
 	public static Node findNode(Node node, String name) {
 
 		Node retNode = null;
@@ -72,6 +79,9 @@ public class Main {
 		return retNode;
 	}
 
+	/*
+	 * function checks for a cycle within the tree
+	 */
 	public static boolean cycle(Node node, String parent) {
 
 		if (node.name.equals(parent)) return true;
@@ -83,6 +93,9 @@ public class Main {
 		return false;
 	}
 	
+	/*
+	 * function writes the family trees to the console
+	 */
 	public static void print_tree(Node root, int lvl) {
 		
 		for (int i = 0; i < lvl; ++i) System.out.print("    ");
